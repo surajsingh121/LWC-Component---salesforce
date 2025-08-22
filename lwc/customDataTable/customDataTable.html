@@ -1,0 +1,78 @@
+<template>
+    <lightning-card title="Account Search">
+        <!-- Search Bar -->
+        <div class="slds-p-around_medium">
+            <lightning-input type="text" label="Search Account" value={searchKey} onchange={handleChange}></lightning-input>
+            <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+        </div>
+
+        <!-- Results -->
+        <template if:true={accounts}>
+            <template for:each={accounts} for:item="acc">
+                <div key={acc.Id} class="slds-m-around_medium slds-box slds-theme_default">
+                   
+
+                    <!-- Contacts Custom Table -->
+                    <h3 class="slds-text-heading_small slds-m-top_small">Account Related Contacts</h3>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col"><div class="slds-truncate">Name</div></th>
+                                <th scope="col"><div class="slds-truncate">Email</div></th>
+                                <th scope="col"><div class="slds-truncate">Phone</div></th>
+                                <th scope="col"><div class="slds-truncate">Actions</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template if:true={acc.Contacts}>
+                                <template for:each={acc.Contacts} for:item="con">
+                                    <tr key={con.Id}>
+                                        <td>{con.Name}</td>
+                                        <td>{con.Email}</td>
+                                        <td>{con.Phone}</td>
+                                        <td>
+                                            <lightning-button-icon icon-name="utility:preview" alternative-text="View" onclick={handleView} data-id={con.Id} data-sobject="Contact"></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" onclick={handleEdit} data-id={con.Id} data-sobject="Contact"></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" onclick={handleDelete} data-id={con.Id} data-sobject="Contact"></lightning-button-icon>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+
+                    <!-- Opportunities Custom Table -->
+                    <h3 class="slds-text-heading_small slds-m-top_small">Account Related Opportunities</h3>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col"><div class="slds-truncate">Name</div></th>
+                                <th scope="col"><div class="slds-truncate">Stage</div></th>
+                                <th scope="col"><div class="slds-truncate">Amount</div></th>
+                                <th scope="col"><div class="slds-truncate">Close Date</div></th>
+                                <th scope="col"><div class="slds-truncate">Actions</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template if:true={acc.Opportunities}>
+                                <template for:each={acc.Opportunities} for:item="opp">
+                                    <tr key={opp.Id}>
+                                        <td>{opp.Name}</td>
+                                        <td>{opp.StageName}</td>
+                                        <td>{opp.Amount}</td>
+                                        <td>{opp.CloseDate}</td>
+                                        <td>
+                                            <lightning-button-icon icon-name="utility:preview" alternative-text="View" onclick={handleView} data-id={opp.Id} data-sobject="Opportunity"></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:edit" alternative-text="Edit" onclick={handleEdit} data-id={opp.Id} data-sobject="Opportunity"></lightning-button-icon>
+                                            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" onclick={handleDelete} data-id={opp.Id} data-sobject="Opportunity"></lightning-button-icon>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

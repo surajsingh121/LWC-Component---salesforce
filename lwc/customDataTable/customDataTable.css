@@ -1,0 +1,25 @@
+.lightning-studio{
+	color : blue;
+}
+button{
+	color: white;
+	background-color: blue;
+	height: auto;
+	width: auto;
+	box-shadow: 5px 5px 8px black;
+}
+
+lightning-button-icon:hover{
+	    background-color: #8ce0f3; /* Default background */
+        color: white;
+		padding: 4px 2px;
+        transition: background-color 0.3s ease;
+}
+
+    lightning-button:hover{
+        background-color: #0070d2; /* Default background */
+        color: white;
+        box-shadow: 5px 8px 10px black;
+        border-radius: 4px;
+        transition: background-color 0.3s ease; /* Smooth transition for hover */
+    }
